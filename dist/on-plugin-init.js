@@ -1,7 +1,8 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 exports.onPluginInit = void 0;
-const onPluginInit = ({ reporter }) => {
-    reporter.info(`gatsby-source-yext loaded...`);
+var onPluginInit = function (_a) {
+    var reporter = _a.reporter;
+    reporter.info("gatsby-source-yext loaded...");
 };
 exports.onPluginInit = onPluginInit;
