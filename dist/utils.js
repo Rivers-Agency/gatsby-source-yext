@@ -8,36 +8,31 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.fetchContent = exports.fetchFolders = void 0;
-const node_fetch_1 = __importDefault(require("node-fetch"));
+exports.fetchFolders = fetchFolders;
+exports.fetchContent = fetchContent;
 const headers = {
     "Content-Type": `application/json`,
 };
-function fetchFolders(pluginOptions, pageToken = '') {
-    return __awaiter(this, void 0, void 0, function* () {
+function fetchFolders(pluginOptions_1) {
+    return __awaiter(this, arguments, void 0, function* (pluginOptions, pageToken = '') {
         const { apiKey, accountId, apiVersion } = pluginOptions;
         const url = `https://api.yextapis.com/v2/accounts/${accountId}/folders?api_key=${apiKey}&v=${apiVersion}${pluginOptions.pageLimit ? `&limit=${pluginOptions.pageLimit}` : ''}${pageToken ? `&pageToken=${pageToken}` : ''}`;
-        const response = yield (0, node_fetch_1.default)(url, {
+        const response = yield fetch(url, {
             method: `GET`,
             headers,
         });
         return yield response.json();
     });
 }
-exports.fetchFolders = fetchFolders;
-function fetchContent(pluginOptions, pageToken = '') {
-    return __awaiter(this, void 0, void 0, function* () {
+function fetchContent(pluginOptions_1) {
+    return __awaiter(this, arguments, void 0, function* (pluginOptions, pageToken = '') {
         const { apiKey, accountId, apiVersion, entityTypes } = pluginOptions;
         const url = `https://api.yextapis.com/v2/accounts/${accountId}/entities?api_key=${apiKey}&v=${apiVersion}&entityTypes=${entityTypes.join(',')}${pluginOptions.pageLimit ? `&limit=${pluginOptions.pageLimit}` : ''}${pageToken ? `&pageToken=${pageToken}` : ''}`;
-        const response = yield (0, node_fetch_1.default)(url, {
+        const response = yield fetch(url, {
             method: `GET`,
             headers,
         });
         return yield response.json();
     });
 }
-exports.fetchContent = fetchContent;

@@ -1,10 +1,8 @@
-import fetch, { HeadersInit } from "node-fetch"
-
 import type {IPluginOptionsInternal, YextManagementAPIRequestResponse} from "./types";
 
 const headers = {
   "Content-Type": `application/json`,
-} satisfies HeadersInit
+}
 
 export async function fetchFolders(pluginOptions: IPluginOptionsInternal, pageToken = '') : Promise<YextManagementAPIRequestResponse> {
   const { apiKey, accountId, apiVersion } = pluginOptions;
