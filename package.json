@@ -1,7 +1,7 @@
 {
   "name": "gatsby-source-yext",
   "description": "Gatsby source plugin for Yext",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "license": "MIT",
   "main": "./dist/gatsby-node.js",
   "files": [
@@ -22,13 +22,12 @@
   "engines": {
     "node": ">=18.0.0"
   },
-  "dependencies": {
-    "node-fetch": "^2.6.8"
-  },
+  "dependencies": {},
   "devDependencies": {
     "del-cli": "^5.0.0",
     "gatsby": "next",
-    "typescript": "^4.9.4"
+    "minimatch": "^10.0.3",
+    "typescript": "^5.8.3"
   },
   "peerDependencies": {
     "gatsby": "^5.0.0"
