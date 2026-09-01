@@ -52,7 +52,7 @@ export const sourceNodes: GatsbyNode[`sourceNodes`] = async (gatsbyApi, pluginOp
     }
 
     const contentTypes = ['entities', 'folders'];
-    await Promise.all(map(contentTypes, (contentType) => {
+    await Promise.all(map(contentTypes, (contentType : 'entities' | 'folders') => {
         return new Promise<void>(async (resolve) => {
             await fetchContentFromManagementApi(contentType, gatsbyApi, pluginOptions, reporter);
             resolve();
@@ -62,7 +62,7 @@ export const sourceNodes: GatsbyNode[`sourceNodes`] = async (gatsbyApi, pluginOp
     sourcingTimer.end();
 }
 
-async function fetchContentFromManagementApi(contentType: string, gatsbyApi: SourceNodesArgs, pluginOptions: IPluginOptionsInternal, reporter: Reporter) {
+async function fetchContentFromManagementApi(contentType: 'entities' | 'folders', gatsbyApi: SourceNodesArgs, pluginOptions: IPluginOptionsInternal, reporter: Reporter) {
     const { createNodeId, createContentDigest, actions } = gatsbyApi;
     const { createNode } = actions;
     const sourcingTimer = reporter.activityTimer(`${PLUGIN_NAME}: Fetching ${contentType} from Yext Management API`);
@@ -83,7 +83,7 @@ async function fetchContentFromManagementApi(contentType: string, gatsbyApi: Sou
             hasNextPage = false;
         } else {
             const { pageToken } = response.response
-            const contentNodes : YextFolder[] | YextEntity[] = response.response[contentType];
+            const contentNodes = response.response[contentType];
             if (!pageToken) {
                 hasNextPage = false;
             } else {
@@ -108,7 +108,9 @@ async function fetchContentFromManagementApi(contentType: string, gatsbyApi: Sou
                 const node = {
                     ...data,
                     id: createNodeId(`${nodeType}-${uniqueId}`),
+                    // @ts-ignore Type is from Gatsby
                     parent: null,
+                    // @ts-ignore Type is from Gatsby
                     children: [],
                     internal: {
                         type: nodeType,

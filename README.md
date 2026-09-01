@@ -4,7 +4,7 @@ This source plugin for Gatsby will make Yext data available in your Gatsby site.
 
 ## Installation
 
-    yarn add pseelinger/gatsby-source-yext
+    yarn add Rivers-Agency/gatsby-source-yext
 
 ## Yext Setup
 

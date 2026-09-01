@@ -28,11 +28,13 @@ type YextEntityResponseMeta = {
 };
 type YextEntityResponse = {
     entities: YextEntity[];
+    folders: never;
     count: number;
     pageToken?: string;
 };
 type YextFoldersResponse = {
     folders: YextFolder[];
+    entities: never;
     count: number;
     pageToken?: string;
 };
