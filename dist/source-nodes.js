@@ -101,7 +101,11 @@ function fetchContentFromManagementApi(contentType, gatsbyApi, pluginOptions, re
                         uniqueId = contentNode.id;
                         data = Object.assign(Object.assign({}, contentNode), { folderId: contentNode.id });
                     }
-                    const node = Object.assign(Object.assign({}, data), { id: createNodeId(`${nodeType}-${uniqueId}`), parent: null, children: [], internal: {
+                    const node = Object.assign(Object.assign({}, data), { id: createNodeId(`${nodeType}-${uniqueId}`), 
+                        // @ts-ignore Type is from Gatsby
+                        parent: null, 
+                        // @ts-ignore Type is from Gatsby
+                        children: [], internal: {
                             type: nodeType,
                             contentDigest: createContentDigest(data),
                         } });
